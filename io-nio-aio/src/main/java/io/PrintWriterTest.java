@@ -38,7 +38,7 @@ public class PrintWriterTest {
 	}
 	
 	/**
-	 * 包装一个String
+	 * 包装一个文件目录
 	 */
 	@Test
 	public void test03() throws Exception {

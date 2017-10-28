@@ -1,4 +1,4 @@
-package io;
+package io.file;
 
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * 测试RandomAccessFile
  */
-public class RandomAccessTest {
+public class RandomAccessFileTest {
 
 	/**
 	 * 向文件写入内容

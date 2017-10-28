@@ -9,7 +9,7 @@ import java.io.OutputStreamWriter;
 import org.junit.Test;
 
 /**
- * 
+ * OutputStreamWriter , InputStreamReader 适配器
  */
 public class StreamConver {
 

@@ -11,6 +11,9 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+/**
+ * SequenceInputStream  序列
+ */
 public class SequenceTest {
 
 	/**
@@ -33,6 +36,7 @@ public class SequenceTest {
 	    while ((count = sis.read(buffer)) != -1) {
 	        os.write(buffer, 0, count);
 	    }
+
 
 	    os.flush();
 	    os.close();
