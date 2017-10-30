@@ -13,7 +13,7 @@ public class Client01 {
 		channel.configureBlocking(false);
 		channel.connect(new InetSocketAddress("127.0.0.1", 12345));
 		
-		//2 循环连接服务端
+		//2 连接服务端
 		while (!channel.finishConnect()) {
 			//连接不上可以做其他事情
 		}

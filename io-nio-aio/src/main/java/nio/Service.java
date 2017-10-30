@@ -52,10 +52,10 @@ public class Service {
 	public static void accept(SelectionKey key) throws Exception{
 		/*
 		 * channel()方法返回注册时用来创建的Channel，该Channel是一个ServerSocketChannel，
-		 * 因为这是我们注册的唯一一种支持accept操作的信道
-		 * accept()方法为传入的连接返回一个SocketChannel实例。
+		 * ServerSocketChannel是唯一一种支持accept操作的信道
 		 */
 		ServerSocketChannel serverChannel =(ServerSocketChannel)key.channel();
+		//accept()方法返回一个SocketChannel , SocketChannel用于和客户端数据交换
 		SocketChannel channel = serverChannel.accept();
 		channel.configureBlocking(false);
 		
@@ -70,7 +70,6 @@ public class Service {
 		//1 根据其支持数据读取操作可知，这是一个SocketChannel
 		SocketChannel channel =(SocketChannel)key.channel();
 		
-		try {
 			//2 把通道中的数据读取到缓冲区
 			 ByteBuffer buffer = ByteBuffer.allocate(1024);
 			 int read = channel.read(buffer);
@@ -90,14 +89,7 @@ public class Service {
 			System.out.println(sb.toString());
 			
 			//注册写事件
-			key.interestOps(SelectionKey.OP_WRITE);
-			
-		} catch (Exception e) {
-			key.cancel();
-			channel.socket().close();
-			channel.close();
-			return;
-		}
+			channel.register(selector, SelectionKey.OP_WRITE);
 	}
 	
 	/**
@@ -112,6 +104,11 @@ public class Service {
 		buffer.flip();
 		channel.write(buffer);
 		buffer.clear();
+
+		//关闭连接
+		key.cancel();
+		channel.socket().close();
+		channel.close();
 	}
 	
 }
